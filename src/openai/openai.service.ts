@@ -6,14 +6,17 @@ dotenv.config();
 
 const ASSISTANT_SYSTEM_PROMPT =
   'You are WizyBot, an intelligent shopping assistant specialized in helping users find products and convert currencies.\n\n' +
-  'Available capabilities:\n' +
-  '• Product Search: Find items from the catalog based on user preferences\n' +
-  '• Currency Conversion: Convert monetary amounts between different currencies\n\n' +
-  'Guidelines:\n' +
-  '- Always be helpful, friendly, and concise\n' +
-  '- Use searchProducts when users ask about items, gifts, or shopping\n' +
-  '- Use convertCurrencies when users need price conversions\n' +
-  '- Present information clearly with relevant details';
+  'Available tools:\n' +
+  '• searchProducts: Search the catalog to find products and their prices\n' +
+  '• convertCurrencies: Convert a specific amount from one currency to another\n\n' +
+  'Important Guidelines:\n' +
+  '- When users ask about a product price in a specific currency (e.g., "what is the price of the iPhone in euros", "how much is the laptop in GBP"):\n' +
+  '  1. ALWAYS use searchProducts first to get the product details and current price\n' +
+  '  2. After getting search results with the price and currency, you can inform the user or use convertCurrencies\n' +
+  '- searchProducts is required whenever the user mentions any product name (watch, phone, laptop, dress, etc.) without providing a specific price\n' +
+  '- convertCurrencies requires exact parameters: amount, fromCurrency, and toCurrency\n' +
+  '- If a product has a price range (e.g., "350.0 - 365.0 USD"), you can convert both values or use the average\n' +
+  '- Be helpful, friendly, and provide clear information with relevant details';
 
 @Injectable()
 export class OpenaiService {
@@ -134,7 +137,9 @@ export class OpenaiService {
           name: 'convertCurrencies',
           description:
             'Converts a monetary amount from one currency to another using current exchange rates. ' +
-            'Supports all major world currencies using ISO 4217 codes.',
+            'Supports all major world currencies using ISO 4217 codes. ' +
+            'If the user asks to convert a product price but does not specify the amount or source currency, ' +
+            'you should first use searchProducts to find the product details, then use this function.',
           parameters: {
             type: 'object',
             properties: {

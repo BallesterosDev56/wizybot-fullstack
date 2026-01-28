@@ -228,14 +228,32 @@ Ensure all required environment variables are set in your production environment
 - Change the `PORT` value in `.env`
 - Or stop the process using port 3000
 
-## Contributing
+## Technical Implementation Details
 
-This is a personal project by Daniel Ballesteros. Feel free to fork and modify for your own use.
+This project implements the Wizybot Technical Assessment for the Fullstack Developer Position using:
+
+### Core Requirements Met
+
+- ✅ NestJS with TypeScript
+- ✅ OpenAI Chat Completion API with Function Calling (not Agent API)
+- ✅ `searchProducts()` tool with semantic similarity search algorithm
+- ✅ `convertCurrencies()` tool with Open Exchange Rates API integration
+- ✅ DTOs for request/response validation
+- ✅ Controllers for routing and services for business logic
+- ✅ Swagger documentation
+- ✅ Comprehensive code comments in English
+- ✅ All variables, functions, and classes named in English
+
+### Testing
+
+The implementation has been tested with the following queries:
+- "I am looking for a phone"
+- "I am looking for a present for my dad"
+- "How much does a watch cost?"
+- "What is the price of the watch in Euros"
+- "How many Canadian Dollars are 350 Euros"
 
 ## Author
 
-**Daniel Ballesteros**
-
-## License
-
-This project is private and not licensed for public use.
+**Daniel Ballesteros**  
+Technical Assessment - Wizybot Fullstack Developer Position
