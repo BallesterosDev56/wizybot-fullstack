@@ -17,6 +17,18 @@ async function bootstrap() {
   displayStartupBanner();
   const application = await NestFactory.create(AppModule);
 
+  // Enable CORS for frontend access
+  application.enableCors({
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:5173',
+      'https://wizybot-ui.vercel.app',
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  });
+
   // Enable automatic request validation
   application.useGlobalPipes(
     new ValidationPipe({
