@@ -1,0 +1,6 @@
+displayTitle,embeddingText,price,url,imageUrl,productType
+iPhone 14 Pro,Latest iPhone with advanced camera system and A16 chip,$999,https://example.com/iphone14,https://example.com/images/iphone14.jpg,Electronics
+Samsung Galaxy S23,Flagship Android phone with excellent display,$899,https://example.com/galaxy-s23,https://example.com/images/galaxys23.jpg,Electronics
+MacBook Pro M2,Professional laptop with M2 chip and Retina display,$1999,https://example.com/macbook-pro,https://example.com/images/macbook.jpg,Computers
+Sony WH-1000XM5,Premium noise-cancelling wireless headphones,$399,https://example.com/sony-headphones,https://example.com/images/sony-headphones.jpg,Audio
+Apple Watch Series 8,Advanced smartwatch with health tracking features,$429,https://example.com/apple-watch,https://example.com/images/apple-watch.jpg,Wearables
