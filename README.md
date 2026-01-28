@@ -2,6 +2,12 @@
 
 > An AI-powered shopping assistant that helps users find products and convert currencies using natural language
 
+## 🚀 Live Demo
+
+- **Frontend UI**: [https://wizybot-ui.vercel.app](https://wizybot-ui.vercel.app)
+- **Backend API**: [https://wizybot-fullstack.onrender.com](https://wizybot-fullstack.onrender.com)
+- **API Docs**: [https://wizybot-fullstack.onrender.com/docs](https://wizybot-fullstack.onrender.com/docs)
+
 ## Overview
 
 WizyBot is a modern backend application built with NestJS and TypeScript that leverages OpenAI's GPT models to provide intelligent product recommendations and real-time currency conversion. The system uses function calling to seamlessly integrate external tools and deliver accurate, helpful responses to user queries.
@@ -255,5 +261,5 @@ The implementation has been tested with the following queries:
 
 ## Author
 
-**Daniel Ballesteros**  
+**Daniel Ballesteros**
 Technical Assessment - Wizybot Fullstack Developer Position
