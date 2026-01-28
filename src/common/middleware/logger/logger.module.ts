@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 @Module({
   imports: [],
   exports: [],
-  controllers:[],
-  providers: []
+  controllers: [],
+  providers: [],
 })
 export class LoggerModule {}

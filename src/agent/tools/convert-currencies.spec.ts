@@ -90,7 +90,6 @@ describe('convertCurrencies', () => {
     });
     jest.spyOn(axios, 'isAxiosError').mockReturnValue(true);
 
-
     await expect(convertCurrencies(100, 'USD', 'EUR')).rejects.toThrow(
       /Authentication failed: Invalid API key/,
     );

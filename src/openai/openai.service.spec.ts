@@ -73,7 +73,6 @@ describe('OpenaiService', () => {
       }),
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     expect(result.tool_calls?.[0]).toMatchObject({
       function: {
         name: 'searchProducts',

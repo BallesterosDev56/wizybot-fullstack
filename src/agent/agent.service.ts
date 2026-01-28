@@ -2,6 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { OpenaiService } from '../openai/openai.service';
 import { searchProducts } from './tools/search-products';
 import { convertCurrencies } from './tools/convert-currencies';
+import { ToolValidationPipe } from '../common/pipes/tool-validation.pipe';
+import { SearchProductsDto } from './dto/search-products.dto';
+import { ConvertCurrenciesDto } from './dto/convert-currencies.dto';
 
 @Injectable()
 export class AgentService {
@@ -96,37 +99,40 @@ export class AgentService {
 
   /**
    * Executes product search with validated parameters
+   *
+   * Uses ToolValidationPipe to ensure parameters meet SearchProductsDto requirements
+   * before executing the search function. This replaces manual type checking and conversion.
    */
   private async executeProductSearch(
     params: Record<string, unknown>,
   ): Promise<unknown> {
-    const searchQuery =
-      typeof params.query === 'string' ? params.query : String(params.query);
+    const validationPipe = new ToolValidationPipe<SearchProductsDto>(
+      SearchProductsDto,
+    );
+    const validatedParams = await validationPipe.transform(params);
 
-    return await searchProducts(searchQuery);
+    return await searchProducts(validatedParams.query);
   }
 
   /**
    * Executes currency conversion with validated parameters
+   *
+   * Uses ToolValidationPipe to ensure parameters meet ConvertCurrenciesDto requirements
+   * before executing the conversion function. Automatically handles type conversion
+   * and validates currency code format.
    */
   private async executeCurrencyConversion(
     params: Record<string, unknown>,
   ): Promise<unknown> {
-    const amountValue =
-      typeof params.amount === 'number'
-        ? params.amount
-        : Number(params.amount || 0);
+    const validationPipe = new ToolValidationPipe<ConvertCurrenciesDto>(
+      ConvertCurrenciesDto,
+    );
+    const validatedParams = await validationPipe.transform(params);
 
-    const sourceCurrency =
-      typeof params.fromCurrency === 'string'
-        ? params.fromCurrency
-        : String(params.fromCurrency);
-
-    const targetCurrency =
-      typeof params.toCurrency === 'string'
-        ? params.toCurrency
-        : String(params.toCurrency);
-
-    return await convertCurrencies(amountValue, sourceCurrency, targetCurrency);
+    return await convertCurrencies(
+      validatedParams.amount,
+      validatedParams.fromCurrency,
+      validatedParams.toCurrency,
+    );
   }
 }
