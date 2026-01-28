@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { displayStartupBanner } from './common/utils/startup-banner';
 
 /**
  * Application bootstrap and initialization
@@ -12,6 +13,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
  * - Server port configuration
  */
 async function bootstrap() {
+  // Display startup banner
+  displayStartupBanner();
   const application = await NestFactory.create(AppModule);
 
   // Enable automatic request validation
